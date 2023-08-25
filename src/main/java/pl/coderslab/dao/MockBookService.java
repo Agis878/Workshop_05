@@ -38,28 +38,21 @@ public class MockBookService implements BookService{
     @Override
     public void add(Book book) {
         list.add(book);
-
-
     }
 
     @Override
     public void delete(Long id) {
-        list.stream()
-                .filter(book -> !book.getId().equals(id))
-                .collect(Collectors.toList());
+        if (get(id).isPresent()) {
+            list.remove(this.get(id).get());
+        }
     }
 
     @Override
-    public void update(Long id, Book updateBook) {
-        for (Book book: list) {
-            if(book.getId().equals(id)) {
-                book.setId(updateBook.getId());
-                book.setTitle(updateBook.getTitle());
-                book.setAuthor(updateBook.getAuthor());
-                book.setIsbn(updateBook.getIsbn());
-                book.setPublisher(updateBook.getPublisher());
-                book.setType(updateBook.getType());
-        }
+    public void update(Book book) {
+
+       if (this.get(book.getId()).isPresent()) {
+           int indexOf = list.indexOf(this.get(book.getId()).get());
+           list.set(indexOf,book);
     }
 
     }
