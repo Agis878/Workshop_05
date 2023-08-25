@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.awt.print.Book;
 
     @RestController
-    @RequestMapping("/books")
+    @RequestMapping("books")
     public class BookController {
-        @RequestMapping("/helloBook")
-        public Book helloBook() {
+        @RequestMapping("helloBook")
+        public String helloBook() {
 
-            return new Book(
-            );
+            return "cos";
         }
     }
-}
+
