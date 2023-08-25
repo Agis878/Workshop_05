@@ -1,4 +1,4 @@
-package pl.coderslab.model;
+package pl.coderslab.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

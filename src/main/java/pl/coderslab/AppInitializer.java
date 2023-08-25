@@ -29,15 +29,15 @@ public class AppInitializer extends
     protected String[] getServletMappings() {
 
         return new String[]{"/"};   }
+    @Override
+    public void onStartup(ServletContext container) throws ServletException {
+        super.onStartup(container);
 
-
-    public void onStartup(ServletContext container) throws ServletException { //uruchamia kontext spring, dodaje appcongi, ustawia dispatcher
-
-
-        FilterRegistration.Dynamic fr = container.addFilter("encodingFilter", //wymusza utf-8
-                new CharacterEncodingFilter());
+        // Rejestracja filtru
+        FilterRegistration.Dynamic fr = container.addFilter("encodingFilter", new CharacterEncodingFilter());
         fr.setInitParameter("encoding", "UTF-8");
         fr.setInitParameter("forceEncoding", "true");
         fr.addMappingForUrlPatterns(null, true, "/*");
     }
+
 }
